@@ -417,3 +417,20 @@ team1 > team2 && console.log('Team 2 is more likely to win');
 
 
 */
+// Looping Arrays: the FOR-OF loop
+
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log(item);
+
+// if we need the index
+
+// for (const item of menu.entries()) {
+//   console.log(`${item[0] + 1}: ${item[1]}`); // this is the old way
+// }
+
+// we can do it better with destructuring elem
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
+// console.log([...menu.entries()]);
