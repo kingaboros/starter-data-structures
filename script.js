@@ -496,9 +496,36 @@ for (const item of menu) console.log(item);
       
       if (users.length > 0) console.log(users[0].name);
       else console.log('user array empty');
-      
-      
-      
-      
-      //
-      
+      */
+
+// Looping objects: object keys, values, and entries
+
+//looping over property names - also called keys
+
+const properties = Object.keys(openingHours);
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days `;
+
+for (const day of properties) {
+  openStr += `${day},`;
+}
+
+console.log(openStr);
+
+// looping over property values
+
+const values = Object.values(openingHours);
+
+console.log(values);
+
+// looping over the entire object
+
+const entries = Object.entries(openingHours);
+
+// console.log(entries); // we get an array where we have first the key and then the value.
+
+// we are destructuring [key, value]
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
+}
