@@ -648,57 +648,100 @@ console.log(
   console.log(new Set('boroskinga').size);
   
   
-  */
-/////////////////////////  MAPS ////////////////
-
-const rest = new Map();
-rest.set('name', 'Classico Italiano');
-rest.set(1, 'Firenze, Italy');
-// console.log(rest.set(2, 'Lisbon, Portugal'));
-
-rest
+  /////////////////////////  MAPS ////////////////
+  
+  const rest = new Map();
+  rest.set('name', 'Classico Italiano');
+  rest.set(1, 'Firenze, Italy');
+  // console.log(rest.set(2, 'Lisbon, Portugal'));
+  
+  rest
   .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
   .set('open', 11)
   .set('close', 23)
   .set(true, 'We are open')
   .set(false, 'We are closed');
+  
+  // to read data from the map we use the get method
+  
+  // console.log(rest.get('name'));
+  // console.log(rest.get(true));
+  // console.log(rest.get(1));
+  
+  const time = 8;
+  // console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+  
+  //check if a map contains a certain key with has
+  
+  // console.log(rest.has('categories'));
+  
+  //deleting a key with delete
+  rest.delete(2);
+  // console.log(rest);
+  
+  // get the size
+  rest.size;
+  
+  //remove all data
+  
+  // (rest.clear);
+  
+  //using objects / arrays as map keys
+  
+  // in order to work we have to create an array with the object and then use it to get data out from it.
+  
+  const arr = [1, 2];
+  
+  rest.set(arr, 'Test');
+  
+  // useful for dom elements as well
+  rest.set(document.querySelector('h1'), 'Heading'); // special type of object
+  console.log(rest);
+  
+  // console.log(rest.get([1, 2])); // it's undefined, because it's not the same as we wrote it above.
+  
+  console.log(rest.get(arr)); // it works because they refer to at the same place in memory
+  
+  
+  //// MAPS iteration
+  
+  const question = new Map([
+    ['question', 'What is the best programming language in the world'],
+    [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct'],
+  [false, 'Try again'],
+]);
 
-// to read data from the map we use the get method
+console.log(question);
 
-// console.log(rest.get('name'));
-// console.log(rest.get(true));
-// console.log(rest.get(1));
+// convert an object to map
 
-const time = 8;
-// console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+console.log(Object.entries(openingHours)); // returns an array of arrays
 
-//check if a map contains a certain key with has
+const hoursMap = new Map(Object.entries(openingHours));
 
-// console.log(rest.has('categories'));
+console.log(hoursMap);
 
-//deleting a key with delete
-rest.delete(2);
-// console.log(rest);
+// Quiz app
+console.log(question.get('question'));
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+}
 
-// get the size
-rest.size;
+// const answer = Number(prompt('Your answer:'));
+const answer = 3;
+console.log(answer);
 
-//remove all data
+console.log(question.get(question.get('correct') === answer));
 
-// (rest.clear);
+// convert a map to array
 
-//using objects / arrays as map keys
+console.log([...question]);
+console.log([...question.entries()]);
+console.log([...question.keys()]);
+console.log([...question.values()]);
 
-// in order to work we have to create an array with the object and then use it to get data out from it.
-
-const arr = [1, 2];
-
-rest.set(arr, 'Test');
-
-// useful for dom elements as well
-rest.set(document.querySelector('h1'), 'Heading'); // special type of object
-console.log(rest);
-
-// console.log(rest.get([1, 2])); // it's undefined, because it's not the same as we wrote it above.
-
-console.log(rest.get(arr)); // it works because they refer to at the same place in memory
+*/
