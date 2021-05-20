@@ -586,7 +586,6 @@ for (const [team, odd] of Object.entries(game.odds)) {
   console.log(`Odd of ${teamStr} ${odd}`);
 }
 
-*/
 
 // Sets - another data structure
 
@@ -642,8 +641,64 @@ console.log(availableUnique);
 
 console.log(
   new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
-);
+  );
+  
+  // we can also count how many letters are in a string
+  
+  console.log(new Set('boroskinga').size);
+  
+  
+  */
+/////////////////////////  MAPS ////////////////
 
-// we can also count how many letters are in a string
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy');
+// console.log(rest.set(2, 'Lisbon, Portugal'));
 
-console.log(new Set('boroskinga').size);
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open')
+  .set(false, 'We are closed');
+
+// to read data from the map we use the get method
+
+// console.log(rest.get('name'));
+// console.log(rest.get(true));
+// console.log(rest.get(1));
+
+const time = 8;
+// console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+//check if a map contains a certain key with has
+
+// console.log(rest.has('categories'));
+
+//deleting a key with delete
+rest.delete(2);
+// console.log(rest);
+
+// get the size
+rest.size;
+
+//remove all data
+
+// (rest.clear);
+
+//using objects / arrays as map keys
+
+// in order to work we have to create an array with the object and then use it to get data out from it.
+
+const arr = [1, 2];
+
+rest.set(arr, 'Test');
+
+// useful for dom elements as well
+rest.set(document.querySelector('h1'), 'Heading'); // special type of object
+console.log(rest);
+
+// console.log(rest.get([1, 2])); // it's undefined, because it's not the same as we wrote it above.
+
+console.log(rest.get(arr)); // it works because they refer to at the same place in memory
