@@ -760,7 +760,6 @@ Your tasks:
 
 4. Loop over 'gameEvents' and log each element to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this: [FIRST HALF] 17: ⚽ GOAL
 
-*/
 
 const gameEvents = new Map([
   [17, '⚽ GOAL'],
@@ -792,20 +791,70 @@ gameEvents.delete(64);
 //3
 console.log(
   `An event happened, on average, every ${90 / gameEvents.size} minutes`
-);
+  );
+  
+  //bonus point here
+  const time = [...gameEvents.keys()].pop();
+  
+  console.log(time);
+  
+  console.log(
+    `An event happened, on average, every ${time / gameEvents.size} minutes`
+    );
+    
+    //4
+    
+    for (const [min, event] of gameEvents) {
+      const half = min <= 45 ? 'First' : 'SECOND';
+      console.log(`[${half} HALF] ${min}: ${event}`);
+    }
+    
+*/
 
-//bonus point here
-const time = [...gameEvents.keys()].pop();
+/////////// Working with strings
 
-console.log(time);
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
 
-console.log(
-  `An event happened, on average, every ${time / gameEvents.size} minutes`
-);
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[0]);
 
-//4
+console.log(airline.length);
+console.log('B737'.length);
 
-for (const [min, event] of gameEvents) {
-  const half = min <= 45 ? 'First' : 'SECOND';
-  console.log(`[${half} HALF] ${min}: ${event}`);
-}
+// Methods
+// get the position of a certain letter in a string
+console.log(airline.indexOf('r')); // first occurence
+console.log(airline.lastIndexOf('r')); //last occurence
+
+console.log(airline.indexOf('Portugal')); // search for an entire word - case sensitive
+
+console.log(airline.slice(4)); // A starts at position 4 - where it starts to extract - the result is called a sub string (because it's just a part of a string)
+
+console.log(airline.slice(4, 7)); // the result is Air because this will do 7-4 = 3
+
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+console.log(airline.slice(-2)); // extracts the last 2 letters from the string
+
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  //B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') console.log(`You got the middle seat`);
+  else console.log('You got lucky');
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+// this is what JS does behind the scenes whenever we call a method on a string. When the operation is done, the object is converted back to a primitive string.
+console.log(new String('jonas'));
+console.log(typeof new String('Jonas'));
+
+console.log(typeof new String('jonas').slice(1)); // this is back to string
