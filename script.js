@@ -587,3 +587,63 @@ for (const [team, odd] of Object.entries(game.odds)) {
 }
 
 */
+
+// Sets - another data structure
+
+const orderSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+
+console.log(orderSet); // duplicates are removed
+
+// sets are iterable
+console.log(new Set('jonas'));
+console.log(new Set(''));
+
+// check for size
+console.log(orderSet.size);
+
+// check if an elem exists
+console.log(orderSet.has('Pizza')); // true
+console.log(orderSet.has('Bread')); // false
+
+// add new elem to a set
+
+orderSet.add('Garlic Bread');
+orderSet.add('Garlic Bread'); // this will be ignored, because it's a duplicate
+
+// removing an elem from a set
+orderSet.delete('Risotto');
+
+//to remove all elem in a set
+// orderSet.clear();
+console.log(orderSet);
+
+//because it's iterable, we can also loop over them
+for (const order of orderSet) console.log(order);
+
+// real life example
+
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+
+//if we want to use the above array to find out what unique positions are available in a business, we would use a set to retrieve the unique values
+
+const availableUnique = new Set(staff);
+// const availableUnique = [...new Set(staff)]; // we can use the spread operator to convert it to an array
+
+console.log(availableUnique);
+
+// if we want to know how many positions are available, use size property
+
+console.log(
+  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+);
+
+// we can also count how many letters are in a string
+
+console.log(new Set('boroskinga').size);
