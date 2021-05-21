@@ -811,7 +811,7 @@ console.log(
     
 */
 
-/////////// Working with strings
+/////////// Working with strings //////////////////////
 
 const airline = 'TAP Air Portugal';
 const plane = 'A320';
@@ -860,7 +860,6 @@ console.log(typeof new String('Jonas'));
 
 console.log(typeof new String('jonas').slice(1)); // this is back to string
 
-*/
 
 // Changing a case of a string
 
@@ -900,7 +899,7 @@ const priceUS = priceGB.replace('£', '$').replace(',', '.');
 console.log(priceUS);
 
 const announcement =
-  'All passengers come to boarding door 23. Boarding door 23!';
+'All passengers come to boarding door 23. Boarding door 23!';
 
 console.log(announcement.replace('door', 'gate')); // this will change only the first occurence
 
@@ -928,14 +927,87 @@ const checkBaggage = function (items) {
   if (baggage.includes('knife') || baggage.includes('gun')) {
     console.log(
       `You are NOT allowed to boad the place with these items in your baggage!`
-    );
-  } else {
-    console.log('Your baggage is safe for boarding');
+      );
+    } else {
+      console.log('Your baggage is safe for boarding');
+    }
+  };
+  
+  checkBaggage('I have a laptop, some Food and a pocket Knife');
+  checkBaggage('Socks and camera');
+  checkBaggage('Got some snacks and a gun for protection');
+  
+  // must be converted to lower case, because some of the words are different in line 937
+  
+  */
+
+//Split method - it'll split a string into elements of a new array
+
+console.log('a+very+nice+string'.split('+'));
+
+console.log('a very nice string'.split(' '));
+
+const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
+
+console.log(firstName);
+console.log(lastName);
+
+// Join method
+
+const newName = ['Mr.', firstName, lastName.toLocaleUpperCase()].join(' ');
+
+console.log(newName);
+
+// capitalize a name function
+
+const capitalizedName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+
+  for (const n of names) {
+    // namesUpper.push(n[0].toLocaleUpperCase() + n.slice(1)); // 2 ways of doing it
+    namesUpper.push(n.replace(n[0], n[0].toLocaleUpperCase()));
   }
+  console.log(namesUpper.join(' '));
 };
 
-checkBaggage('I have a laptop, some Food and a pocket Knife');
-checkBaggage('Socks and camera');
-checkBaggage('Got some snacks and a gun for protection');
+capitalizedName('jessica ann smith davis');
+capitalizedName('kinga boros');
 
-// must be converted to lower case, because some of the words are different in line 937
+// Padding a string
+
+const message = 'Go to gate 23!';
+
+console.log(message.padStart(25, '+'));
+
+console.log(message.padEnd(25, '+'));
+
+console.log(message.padEnd(25, '+').padStart(40, '+'));
+
+// Real life example - masking digits on a credit card
+
+const maskCreditCard = function (number) {
+  const str = number + ''; // we have to convert the result to a string. We can also use the String() from fundamentals
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(43235365));
+console.log(maskCreditCard(432353666896296296));
+console.log(maskCreditCard('4323536668962962969869'));
+
+// Repeat method
+
+const messsage2 = 'Bad weather... All departures delayed... ';
+
+console.log(messsage2.repeat(5));
+
+// Planes in line function
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`);
+};
+
+planesInLine(5);
+planesInLine(3);
+planesInLine(23);
