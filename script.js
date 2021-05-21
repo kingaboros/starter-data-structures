@@ -816,6 +816,7 @@ console.log(
 const airline = 'TAP Air Portugal';
 const plane = 'A320';
 
+/*
 console.log(plane[0]);
 console.log(plane[1]);
 console.log(plane[2]);
@@ -858,3 +859,83 @@ console.log(new String('jonas'));
 console.log(typeof new String('Jonas'));
 
 console.log(typeof new String('jonas').slice(1)); // this is back to string
+
+*/
+
+// Changing a case of a string
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// practical example - to fix the capitalization in name
+
+const pax = 'jOnAs'; // should be 'Jonas'
+
+const paxLower = pax.toLowerCase();
+console.log(paxLower);
+
+const paxCorrect = paxLower[0].toUpperCase() + paxLower.slice(1);
+console.log(paxCorrect);
+
+// Compare emails - when the capitalization is wrong
+
+const email = 'hello@jonas.io';
+
+const loginEmail = '  Hello@Jonas.Io \n';
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim(); // to trim empty spaces
+
+const normalizedEmail = loginEmail.toLowerCase().trim();
+
+console.log(normalizedEmail);
+
+console.log(email === normalizedEmail);
+
+// Replacing values of a string
+
+const priceGB = '288, 97£';
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+
+console.log(priceUS);
+
+const announcement =
+  'All passengers come to boarding door 23. Boarding door 23!';
+
+console.log(announcement.replace('door', 'gate')); // this will change only the first occurence
+
+console.log(announcement.replaceAll('door', 'gate')); // to change all words in a tring
+
+// console.log(announcement.replace(/door/g, 'gate')); // g stands for global. This is how we would fix before replaceAll method existed.
+
+// Booleans - to verify if something exists in a string
+
+const airplane = 'Airbus A320neo';
+
+console.log(airplane.includes('A320')); // true
+console.log(airplane.includes('Boeing')); // false
+
+console.log(airplane.startsWith('Air')); // false
+
+if (airplane.startsWith('Airbus') && airplane.endsWith('neo')) {
+  console.log('Part of the NEW Airbus family');
+}
+
+// Practice exercise
+
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log(
+      `You are NOT allowed to boad the place with these items in your baggage!`
+    );
+  } else {
+    console.log('Your baggage is safe for boarding');
+  }
+};
+
+checkBaggage('I have a laptop, some Food and a pocket Knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection');
+
+// must be converted to lower case, because some of the words are different in line 937
