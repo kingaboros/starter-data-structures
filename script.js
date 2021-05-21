@@ -939,75 +939,130 @@ const checkBaggage = function (items) {
   
   // must be converted to lower case, because some of the words are different in line 937
   
+  
+  //Split method - it'll split a string into elements of a new array
+  
+  console.log('a+very+nice+string'.split('+'));
+  
+  console.log('a very nice string'.split(' '));
+  
+  const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
+  
+  console.log(firstName);
+  console.log(lastName);
+  
+  // Join method
+  
+  const newName = ['Mr.', firstName, lastName.toLocaleUpperCase()].join(' ');
+  
+  console.log(newName);
+  
+  // capitalize a name function
+  
+  const capitalizedName = function (name) {
+    const names = name.split(' ');
+    const namesUpper = [];
+    
+    for (const n of names) {
+      // namesUpper.push(n[0].toLocaleUpperCase() + n.slice(1)); // 2 ways of doing it
+      namesUpper.push(n.replace(n[0], n[0].toLocaleUpperCase()));
+    }
+    console.log(namesUpper.join(' '));
+  };
+  
+  capitalizedName('jessica ann smith davis');
+  capitalizedName('kinga boros');
+  
+  // Padding a string
+  
+  const message = 'Go to gate 23!';
+  
+  console.log(message.padStart(25, '+'));
+  
+  console.log(message.padEnd(25, '+'));
+  
+  console.log(message.padEnd(25, '+').padStart(40, '+'));
+  
+  // Real life example - masking digits on a credit card
+  
+  const maskCreditCard = function (number) {
+    const str = number + ''; // we have to convert the result to a string. We can also use the String() from fundamentals
+    const last = str.slice(-4);
+    return last.padStart(str.length, '*');
+  };
+  
+  console.log(maskCreditCard(43235365));
+  console.log(maskCreditCard(432353666896296296));
+  console.log(maskCreditCard('4323536668962962969869'));
+  
+  // Repeat method
+  
+  const messsage2 = 'Bad weather... All departures delayed... ';
+  
+  console.log(messsage2.repeat(5));
+  
+  // Planes in line function
+  
+  const planesInLine = function (n) {
+    console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`);
+  };
+  
+  planesInLine(5);
+  planesInLine(3);
+  planesInLine(23);
+  
   */
 
-//Split method - it'll split a string into elements of a new array
+///////////////////////////// Coding Challenge #4 ///////////////
+/*
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
 
-console.log('a+very+nice+string'.split('+'));
+The input will come from a textarea inserted into the DOM (see code below to insert the elements), and conversion will happen when the button is pressed.
 
-console.log('a very nice string'.split(' '));
+Test data (pasted to textarea, including spaces):
 
-const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
+underscore_case
+first_name
+Some_Variable
+calculate_AGE
+delayed_departure
 
-console.log(firstName);
-console.log(lastName);
 
-// Join method
+Should produce this output (5 separate console.log outputs):
 
-const newName = ['Mr.', firstName, lastName.toLocaleUpperCase()].join(' ');
+underscoreCase ✅
+firstName ✅✅
+someVariable ✅✅✅
+calculateAge ✅✅✅✅
+delayedDeparture ✅✅✅✅✅
 
-console.log(newName);
 
-// capitalize a name function
+Hints:
+§ Remember which character defines a new line in the textarea 😉
+§ The solution only needs to work for a variable made out of 2 words, like a_b
+§ Start without worrying about the ✅. Tackle that only after you have the variable
+name conversion working 😉
+§ This challenge is difficult on purpose, so start watching the solution in case
+you're stuck. Then pause and continue!
+Afterwards, test with your own test data!
 
-const capitalizedName = function (name) {
-  const names = name.split(' ');
-  const namesUpper = [];
+*/
 
-  for (const n of names) {
-    // namesUpper.push(n[0].toLocaleUpperCase() + n.slice(1)); // 2 ways of doing it
-    namesUpper.push(n.replace(n[0], n[0].toLocaleUpperCase()));
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const rows = text.split('\n');
+
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLowerCase().trim().split('_');
+
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+
+    console.log(`${output.padEnd(20, ' ')}${'💖'.repeat(i + 1)}`);
   }
-  console.log(namesUpper.join(' '));
-};
-
-capitalizedName('jessica ann smith davis');
-capitalizedName('kinga boros');
-
-// Padding a string
-
-const message = 'Go to gate 23!';
-
-console.log(message.padStart(25, '+'));
-
-console.log(message.padEnd(25, '+'));
-
-console.log(message.padEnd(25, '+').padStart(40, '+'));
-
-// Real life example - masking digits on a credit card
-
-const maskCreditCard = function (number) {
-  const str = number + ''; // we have to convert the result to a string. We can also use the String() from fundamentals
-  const last = str.slice(-4);
-  return last.padStart(str.length, '*');
-};
-
-console.log(maskCreditCard(43235365));
-console.log(maskCreditCard(432353666896296296));
-console.log(maskCreditCard('4323536668962962969869'));
-
-// Repeat method
-
-const messsage2 = 'Bad weather... All departures delayed... ';
-
-console.log(messsage2.repeat(5));
-
-// Planes in line function
-
-const planesInLine = function (n) {
-  console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`);
-};
-
-planesInLine(5);
-planesInLine(3);
-planesInLine(23);
+});
